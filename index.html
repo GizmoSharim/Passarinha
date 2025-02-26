@@ -11,22 +11,14 @@
             background-color: #f8f8f8;
             margin: 0;
             padding: 50px;
-            background-image: url('img/adria.png'); 
+            background-image: url('img/adria.png'); /* Ajuste o caminho da imagem */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             height: 100vh;
             overflow-x: hidden;
         }
-      .botao-container {
-    display: flex;
-    justify-content: flex-start; /* Alinha os botões mais para a esquerda */
-    gap: 10px; /* Espaço entre os botões */
-    margin-left: -20px; /* Move os botões levemente para a esquerda */
-    position: relative; /* Mantém o botão "Não" dentro do container */
-}
-
-
+        
         .container {
             background: white;
             padding: 30px;
@@ -34,7 +26,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
             max-width: 90%;
-            position: relative; 
+            position: relative; /* Define como referência para o botão */
         }
         h1 {
             color: #ff4081;
@@ -62,7 +54,7 @@
         .no {
             background-color: #ff4d4d;
             color: white;
-            position: absolute; 
+            position: absolute; /* Permite a movimentação dentro da .container */
             left: 50%;
             transform: translateX(-50%);
         }
@@ -76,7 +68,7 @@
     </style>
 </head>
 <body>
-    <div class="botao-container">
+    <div class="container">
         <h1>Oi passarinha😏</h1>
         <p>Se você fosse o Manifesto Comunista, eu seria sua edição revisada, porque não paro de pensar em te interpretar de todas as formas.</p>
         <h2>Chama na maõzinha bora sair😏</h2>
@@ -95,10 +87,16 @@
         function moveButton() {
             const containerRect = container.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
+
+            // Calcula os limites para manter o botão dentro do container
             let maxX = containerRect.width - btnRect.width;
             let maxY = containerRect.height - btnRect.height;
+
+            // Garante que o botão não saia da área branca
             let x = Math.random() * maxX;
             let y = Math.random() * maxY;
+
+            // Ajusta a posição relativa ao container
             noBtn.style.position = "absolute";
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
