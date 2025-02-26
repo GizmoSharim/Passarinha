@@ -13,9 +13,11 @@
             padding: 50px;
             background-image: url('img/adria.png'); /* Ajuste o caminho da imagem */
             background-size: cover;
-            background-position: center 30%;             background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh; /* Faz com que a imagem cubra toda a altura da tela */
+            width: 100vw; /* Garante que a imagem ocupe toda a largura */
         }
-        
         .container {
             background: white;
             padding: 30px;
@@ -69,7 +71,7 @@
         <h1>Oi passarinha😏</h1>
         <p>Se você fosse o Manifesto Comunista, eu seria sua edição revisada, porque não paro de pensar em te interpretar de todas as formas.</p>
         <h2>Chama na maõzinha bora sair😏</h2>
-        <a href="https://www.youtube.com/watch?v=-dy1uuJa-vw"><button class="btn yes" onclick="">Sim!😏</button></a>
+        <a href="https://www.youtube.com/watch?v=-dy1uuJa-vw"><button class="btn yes">Sim!😏</button></a>
         <button class="btn no" id="noBtn">Não 😢</button>
     </div>
 
@@ -87,7 +89,10 @@
             });
         } else {
             document.getElementById("noBtn").addEventListener("click", function() {
-                alert('Ops, esse botão não funciona no mobile! 😆');
+                let x = Math.random() * (window.innerWidth - 100);
+                let y = Math.random() * (window.innerHeight - 50);
+                this.style.left = x + "px";
+                this.style.top = y + "px";
             });
         }
     </script>
