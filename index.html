@@ -15,9 +15,10 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh; /* Faz com que a imagem cubra toda a altura da tela */
-              overflow-x: hidden; /* Impede o scroll lateral */
+            height: 100vh;
+            overflow-x: hidden;
         }
+        
         .container {
             background: white;
             padding: 30px;
@@ -25,6 +26,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
             max-width: 90%;
+            position: relative; /* Define como referência para os elementos dentro */
         }
         h1 {
             color: #ff4081;
@@ -54,14 +56,14 @@
             color: white;
             position: absolute;
         }
+
         @media (max-width: 600px) {
             .btn {
                 font-size: 16px;
                 padding: 8px 16px;
             }
             .no {
-                position: relative;
-                margin-top: 10px;
+                position: absolute; /* Permite a movimentação apenas dentro da .container */
             }
         }
     </style>
@@ -79,21 +81,28 @@
         function isMobile() {
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         }
-        
+
+        const noBtn = document.getElementById("noBtn");
+        const container = document.querySelector(".container");
+
+        function moveButton() {
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            let maxX = containerRect.width - btnRect.width;
+            let maxY = containerRect.height - btnRect.height;
+
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+        }
+
         if (!isMobile()) {
-            document.getElementById("noBtn").addEventListener("mouseover", function() {
-                let x = Math.random() * (window.innerWidth - 100);
-                let y = Math.random() * (window.innerHeight - 50);
-                this.style.left = x + "px";
-                this.style.top = y + "px";
-            });
+            noBtn.addEventListener("mouseover", moveButton);
         } else {
-            document.getElementById("noBtn").addEventListener("click", function() {
-                let x = Math.random() * (window.innerWidth - 100);
-                let y = Math.random() * (window.innerHeight - 50);
-                this.style.left = x + "px";
-                this.style.top = y + "px";
-            });
+            noBtn.addEventListener("click", moveButton);
         }
     </script>
 </body>
