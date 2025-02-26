@@ -11,7 +11,7 @@
             background-color: #f8f8f8;
             margin: 0;
             padding: 50px;
-            background-image: url('img/adria.png'); /* Ajuste o caminho da imagem */
+            background-image: url('img/adria.png'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -26,7 +26,7 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             display: inline-block;
             max-width: 90%;
-            position: relative; /* Define como referência para os elementos dentro */
+            position: relative; 
         }
         h1 {
             color: #ff4081;
@@ -54,16 +54,15 @@
         .no {
             background-color: #ff4d4d;
             color: white;
-            position: absolute;
+            position: absolute; 
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         @media (max-width: 600px) {
             .btn {
                 font-size: 16px;
                 padding: 8px 16px;
-            }
-            .no {
-                position: absolute; /* Permite a movimentação apenas dentro da .container */
             }
         }
     </style>
@@ -88,15 +87,13 @@
         function moveButton() {
             const containerRect = container.getBoundingClientRect();
             const btnRect = noBtn.getBoundingClientRect();
-
             let maxX = containerRect.width - btnRect.width;
             let maxY = containerRect.height - btnRect.height;
-
             let x = Math.random() * maxX;
             let y = Math.random() * maxY;
-
-            noBtn.style.left = x + "px";
-            noBtn.style.top = y + "px";
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
         }
 
         if (!isMobile()) {
